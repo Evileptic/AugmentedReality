@@ -25,8 +25,17 @@ public class XBotController : MonoBehaviour
             hipHipButton.onClick.AddListener(HipHipButtonClick);
     }
 
-    private void AngryButtonClick() => xBotAnimator.SetTrigger("Angry");
-    private void SillyButtonClick() => xBotAnimator.SetTrigger("Silly");
-    private void RumbaButtonClick() => xBotAnimator.SetTrigger("Rumba");
-    private void HipHipButtonClick() => xBotAnimator.SetTrigger("HipHop");
+    private void AngryButtonClick() => PlayAnimation("Angry");
+    private void SillyButtonClick() => PlayAnimation("Silly");
+    private void RumbaButtonClick() => PlayAnimation("Rumba");
+    private void HipHipButtonClick() => PlayAnimation("HipHop");
+
+    private void PlayAnimation(string triggerName)
+    {
+        foreach (var param in xBotAnimator.parameters)
+            if (param.type == AnimatorControllerParameterType.Trigger)
+                xBotAnimator.ResetTrigger(param.name);
+
+        xBotAnimator.SetTrigger(triggerName);
+    }
 }
