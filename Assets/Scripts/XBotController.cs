@@ -15,27 +15,15 @@ public class XBotController : MonoBehaviour
     {
         xBotAnimator = GetComponent<Animator>();
 
-        if (angryButton)
-            angryButton.onClick.AddListener(AngryButtonClick);
-        if (sillyButton)
-            sillyButton.onClick.AddListener(SillyButtonClick);
-        if (rumbaButton)
-            rumbaButton.onClick.AddListener(RumbaButtonClick);
-        if (hipHipButton)
-            hipHipButton.onClick.AddListener(HipHipButtonClick);
+        if (angryButton) angryButton.onClick.AddListener(() => PlayAnimation("Angry"));
+        if (sillyButton) sillyButton.onClick.AddListener(() => PlayAnimation("Silly"));
+        if (rumbaButton) rumbaButton.onClick.AddListener(() => PlayAnimation("Rumba"));
+        if (hipHipButton) hipHipButton.onClick.AddListener(() => PlayAnimation("HipHop"));
     }
-
-    private void AngryButtonClick() => PlayAnimation("Angry");
-    private void SillyButtonClick() => PlayAnimation("Silly");
-    private void RumbaButtonClick() => PlayAnimation("Rumba");
-    private void HipHipButtonClick() => PlayAnimation("HipHop");
 
     private void PlayAnimation(string triggerName)
     {
-        foreach (var param in xBotAnimator.parameters)
-            if (param.type == AnimatorControllerParameterType.Trigger)
-                xBotAnimator.ResetTrigger(param.name);
-
+        xBotAnimator.WriteDefaultValues();
         xBotAnimator.SetTrigger(triggerName);
     }
 }
