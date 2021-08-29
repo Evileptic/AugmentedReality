@@ -1,5 +1,5 @@
 # AugmentedReality
-Example AR Unity application with Vuforia asset
+Example of a AR application on Unity with Vuforia asset
 
 **Vuforia license is required!**
 
